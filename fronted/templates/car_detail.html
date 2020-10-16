@@ -1,0 +1,327 @@
+<html>
+<head>
+{% load staticfiles %}
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+<style type="text/css">
+
+
+div.main{
+  
+width: 900px;
+
+margin-top: 20px;
+}
+
+div.border{
+  width: 900px;
+  height: 70px;
+  background-color:  #F8F8FF;
+  margin-top: 10px;
+
+}
+
+
+div.left{
+  color: grey;
+  background-color: #F8F8FF;
+
+width: 585px;
+height: 400px;
+padding: 1px;
+float:right;
+font-size: 15px;
+margin-top: 2px;
+}
+
+div.right{
+  color: grey;
+  background-color:  #F8F8FF;
+
+width: 290px;
+height: 600px;
+padding: 1px;
+float:left;
+font-size: 15px;
+margin-top: 2px;
+}
+
+div.right2{
+  color: grey;
+  background-color:  #F8F8FF;
+
+width: 585px;
+height: 125px;
+padding: 1px;
+float:right;
+font-size: 15px;
+margin-top: 2px;
+}
+
+div.right3{
+  color: grey;
+  background-color:  #F8F8FF;
+
+width: 585px;
+height: 90px;
+padding: 1px;
+float:right;
+font-size: 15px;
+margin-top: 10px;
+}
+
+div.right4{
+  color: grey;
+  
+
+width: 585px;
+height: 200px;
+padding: 1px;
+float:right;
+font-size: 15px;
+margin-top: 10px;
+}
+
+
+div.right4l{
+  color: grey;
+  background-color:  #F8F8FF;
+
+width: 290px;
+height: 200px;
+padding: 1px;
+float:left;
+font-size: 15px;
+margin-top: 10px;
+}
+
+
+div.right4r{
+  color: grey;
+  background-color:  #F8F8FF;
+
+width: 290px;
+height: 200px;
+padding: 1px;
+float:right;
+font-size: 15px;
+margin-top: 10px;
+}
+
+
+
+
+
+
+table, th{
+    border: 1px solid grey;
+    font-family: Times;
+    font-size: 14px;
+}
+table, td{
+  border: 1px solid grey;
+  font-size: 14px;
+  font-family: Times;
+
+
+}
+
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+.right {
+    width: 200px;
+}
+
+.right a {
+    
+    color: grey;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+
+.right a:hover {
+    background-color: rgba(0,0,0,0.1);
+    border: 2px solid rgba(0,0,0,0.2);
+}
+
+.right a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+body{
+  background-color: #F5F5DC;
+
+}
+
+</style>
+</head>
+<body>
+<div>
+
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header" style="padding-left:10%;">
+      <a class="navbar-brand" href="#">Car Rental Project</a>
+    </div>
+   
+
+
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'home' %}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+      <li> <a href="{% url 'contactus' %}"><span class="glyphicon glyphicon-phone"></span>Contact</a>
+      </li>
+      <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+      <li><a href="{% url 'log' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li>
+
+</li>
+    </ul>
+  </div>
+</nav>
+
+
+<center>
+  <div class="border">
+<b><h3 style="font-family:Times;margin-top:5px;">
+Book Your Drives, Zero Refundable Deposit Style !</h3><b>
+
+<h5 style="font-family:Arial;">Why Pay A Sum, When You Can Drive For None! Now Book Your Drives with Zero Refundable Deposit.#It'sMyDrive
+</h5>
+  </div>
+</center>
+
+
+
+
+<center>
+
+<div class="main">
+
+
+  <div class="right">
+    <h5 style="font-family:Times">
+        {% for c in ob %}
+             {% if category.slug == c.slug %}class="selected"{% endif %}
+                <a href="{% url 'detail' c.id %}">{{ c.name }}</a>
+            
+        {% endfor %}
+      </h5></b>
+    </div>
+
+
+<div class="left">
+   
+   <div style="width:252;height:192px;box-shadow: inset -4px -4px rgba(0,0,0,0.5);margin-top:5px;">
+   <img src="{{ car_list.image.url }}" width="250px" height="190px" ></div>
+   <h3>{{ car_list.name }}</h3>
+   
+   <div style="width:30px;height:30px;float:left;margin-left:50px;">
+
+     <center> <img src="/media/car_images/icon2.png"></center>
+   <center>
+    {{ car_list.seats }}seater
+  </center>
+  </div>
+  
+  <div style="width:30px;height:30px;float:right;margin-right:50px;">
+
+     <center> <img src="/media/car_images/icon3.png"></center>
+   <center>
+
+    {{ car_list.milege }}km/lit
+    </center>
+    </div>
+
+  <div style="width:30px;height:30px;margin:left:200px;">
+
+     <center> <img src="/media/car_images/icon1.png"></center>
+     Automatic
+   
+  </div>
+
+  <div style="width:150px;height:25px;background-color:#A9A9A9;margin-top:30px;border-radius:5px;">
+
+  <h4><b>{{ car_list.price }} /hour</b><h4><br>
+  
+  </div>
+
+  <div style="margin-top:10px;" >
+<a href="{% url 'book' car_list.id %}" class="btn btn-primary btn-lg">Book Now</a>
+</div>
+
+</div>
+
+
+
+<div class="right2">
+<h4 style="font-family:Times;text-align:left;margin-left:5px;color:black;">
+<b>Please Note</b><h4>
+<h5 style="font-family:Times;text-align:left;margin-left:5px;color:grey;">
+*There are no Hidden Costs<br>
+*Fuel is borne by User<br>
+*Minimum billing is of 6 hours-all bookings less than 6 hour will be billed at 6 hours<br>
+*Zero Security Deposit
+</h5>
+</div>
+
+<div class="right3">
+<table style="width:584px;">
+  <tr><th>Delivery and Pickup Charges</th>
+    <th>Delivery Charges</th>
+    <th>Pick-up Charges</th>
+    <th>Total Charges</th>
+  </tr>
+<tr>
+  <td>Booking for less than 2 days</td>
+  <td>250</td>
+  <td>250</td>
+  <td>500</td>
+</tr>
+
+<tr>
+  <td>Booking for more than 2 days</td>
+  <td>Free</td>
+  <td>250</td>
+  <td>250</td>
+</tr></table>
+</div>
+
+<div class="right4">
+<div class="right4l">
+<h3 style="text-align:left;margin-left:15px;font-family:Times;color:black;">
+  Included  </h3>
+  <h5 style="text-align:left;margin-left:15px;font-family:Times;color:grey;">
+    Vehicle Insurance(User & Third Party)<br><br>
+    Road Side Assistance<br><br>
+    24x7 Customer Support<br><br>
+    Maintenance and Cleaning<br><br>
+    </h5>
+
+
+</div>
+  <div class="right4r">
+    <h3 style="text-align:left;margin-left:15px;font-family:Times;color:black;">
+  Excluded  </h3>
+  <h5 style="text-align:left;margin-left:15px;font-family:Times;color:grey;">
+  Fuel<br><br>
+  State Taxes<br><br>
+  Tolls<br><br>
+  Trafic Penalties<br><br>
+  Cleaning Charges(for dirty vehicle)<br><br>
+
+  </h5>
+</div>
+</div>
+
+</div>
+    </center>
+
+    
+
+</div>
+</body>
+</html>

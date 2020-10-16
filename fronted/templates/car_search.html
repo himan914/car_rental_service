@@ -1,0 +1,81 @@
+<html>
+<head>
+{% load staticfiles %}
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+<style type="text/css">
+div.search{
+
+  
+  margin-left: 500px;
+  margin-top: 5px;
+  width: 300px;
+  height: 300px;
+  
+  margin-top: 5px; 
+}
+
+body{
+  background-color: #F5F5DC;
+}
+
+</style>
+</head>
+
+<body>
+  <div style="width:100%">
+ <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header" style="padding-left:10%;">
+      <a class="navbar-brand" href="#">Car Rental</a>
+    </div>
+   
+   
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'home' %}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+
+      <li> <a href="{% url 'contactus' %}"><span class="glyphicon glyphicon-phone"></span>Contact</a>
+      </li>
+    
+      <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+      <li><a href="{% url 'log' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      
+
+
+    </ul>
+  </div>
+</nav>
+
+{% block content %}
+
+<div class="main">
+
+<h2 style="font-family:Times;color:black;"><center>Car Details</center></h2>
+
+
+{% for obj in q %}    
+
+<div class="search" style="width:350px;height:350px;background-color:rgba(0,0,0,0.1);">
+ 
+    <div style="width:202px;height:202px;border:2px groove black;margin-top:10px;margin-left:50px;">
+    
+    {% if obj.image %}
+     <img src='{{obj.image.url}}' height='200px' width='200px' >
+   {% endif %}</div>
+
+<center><b><h2 style="color:black;font-family:Times;">{{ obj.name }}</h2><b></center>
+   <h4 style="margin-left:10px;color:black;font-family:Times">
+  Milege:{{ obj.milege }}km/lit</br>
+   Price:{{ obj.price }}/hour</br><h4>
+
+     </center>
+</div>
+
+
+
+{% endfor %}
+</div>
+{% endblock %}
+</div>
+</body>
+</html>
